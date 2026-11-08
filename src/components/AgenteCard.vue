@@ -85,7 +85,8 @@ const QUE_PASO: Record<string, string> = {
 .pill.vig { background: var(--hue-bg); color: var(--hue); }
 .punto.lento { background: var(--hue); animation-duration: 2.4s; }
 .tarjeta { display: flex; flex-direction: column; }
-.cab { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; }
+.cab { display: flex; gap: 14px; align-items: flex-start; }
+.cab > div { flex: 1 1 auto; min-width: 0; }
 .avatar { width: 56px; height: 56px; }
 h2 { flex-wrap: wrap; }
 .que { color: var(--muted); margin-top: 2px; }
@@ -95,7 +96,8 @@ h2 { flex-wrap: wrap; }
 .barra i { display: block; height: 100%; background: var(--hue); border-radius: 3px; transition: width .6s cubic-bezier(.22, 1, .36, 1); }
 .barra.ind i { width: 30%; animation: ind 1.4s ease-in-out infinite; }
 @keyframes ind { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
-.pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; margin-top: 10px; font-size: var(--fs-small); line-height: 18px; padding: 0; list-style: none; }
+.pasos { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 10px; font-size: var(--fs-small); line-height: 18px; padding: 0; list-style: none; }
+.pasos li { flex: 0 0 calc(33.333% - 7px); }
 .pasos li { display: flex; align-items: center; gap: 6px; color: var(--muted); white-space: nowrap; overflow: hidden; }
 .pasos li span { overflow: hidden; text-overflow: ellipsis; }
 .pasos li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--control); flex: none; }
@@ -103,5 +105,5 @@ h2 { flex-wrap: wrap; }
 .pasos li.actual { color: var(--hue); font-weight: 500; } .pasos li.actual::before { background: var(--hue); border-color: var(--hue); animation: pulso 1.2s infinite; }
 .pista { margin-top: 8px; }
 .pie { margin-top: auto; padding-top: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-@media (min-width: 900px) { .pasos { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .pasos li { flex-basis: calc(20% - 8px); } }
 </style>

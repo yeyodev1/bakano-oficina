@@ -73,7 +73,7 @@ dd { margin: 0; }
 .horas li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
 .horas li:first-child { border-top: 0; }
 .horas b { font-weight: 500; }
-.pasos, .reglas { padding-left: 20px; display: grid; gap: 8px; }
+.pasos, .reglas { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
 .botones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-@media (max-width: 480px) { dl { grid-template-columns: 1fr; gap: 2px 0; } dd { margin-bottom: 8px; } }
+@media (max-width: 480px) { dt, dd { flex-basis: 100%; } dt { margin-top: 4px; } }
 </style>

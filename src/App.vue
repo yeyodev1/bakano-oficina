@@ -74,7 +74,7 @@ const estado = computed(() => {
 .lateral.abierto { transform: none; background: var(--surface); }
 .velo { position: fixed; inset: 0; background: rgba(10, 10, 10, .4); z-index: 25; }
 .marca { display: flex; gap: 10px; align-items: center; padding: 4px 8px; }
-.logo { width: 30px; height: 30px; border-radius: 8px; background: var(--text); color: #fff; display: grid; place-items: center; font-weight: 700; position: relative; flex: none; }
+.logo { width: 30px; height: 30px; border-radius: 8px; background: var(--text); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; position: relative; flex: none; }
 .logo i { position: absolute; right: 5px; bottom: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--hue); }
 .marca b { display: block; font-weight: 600; line-height: 18px; }
 .marca small { color: var(--muted); font-size: var(--fs-small); }
@@ -82,14 +82,14 @@ nav .item { display: flex; align-items: center; gap: 10px; height: 36px; padding
 nav .item:hover { background: var(--active); color: var(--text); }
 nav .item.router-link-exact-active { background: var(--active); color: var(--text); font-weight: 500; }
 .ico { width: 18px; text-align: center; font-size: 13px; }
-.abajo { margin-top: auto; display: grid; gap: 8px; }
+.abajo { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
 .abajo .btn { justify-content: center; }
 .cuerpo { display: flex; flex-direction: column; min-height: 100svh; }
 .barra { height: var(--barra); display: flex; align-items: center; gap: 10px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
 .barra h1 { font-size: 16px; font-weight: 600; white-space: nowrap; }
 .barra .sub { display: none; }
 .sp { flex: 1; }
-.hamb { width: 36px; height: 36px; border: 0; background: none; display: grid; place-content: center; gap: 4px; cursor: pointer; margin-left: -8px; }
+.hamb { width: 36px; height: 36px; border: 0; background: none; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; cursor: pointer; margin-left: -8px; }
 .hamb span { display: block; width: 18px; height: 2px; background: var(--text); }
 .vivo { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-small); color: var(--muted); white-space: nowrap; }
 .vivo i { width: 8px; height: 8px; border-radius: 50%; background: var(--control); }

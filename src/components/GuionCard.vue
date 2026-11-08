@@ -82,9 +82,9 @@ async function copiar() {
 .ficha { border: 1px solid var(--border); border-radius: var(--radius-card); padding: 14px 16px; background: var(--surface); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .arriba { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 h3 { font-size: 15px; line-height: 21px; font-weight: 600; }
-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; margin: 0; }
-dt { color: var(--muted); font-size: var(--fs-small); line-height: 20px; white-space: nowrap; }
-dd { margin: 0; overflow-wrap: anywhere; }
+dl { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0; }
+dt { flex: 0 0 110px; color: var(--muted); font-size: var(--fs-small); line-height: 20px; white-space: nowrap; }
+dd { flex: 1 1 calc(100% - 120px); min-width: 0; margin: 0; overflow-wrap: anywhere; }
 .botones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
 .grabar .paso { margin: 8px 0; }
 .cita { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--text); border-left: 3px solid var(--hue); margin: 8px 0 12px; padding-left: 12px; }

@@ -66,7 +66,7 @@ const patronHoy = computed(() => investigacionHoy.value ? seccion(investigacionH
       <header><h2>Para grabar hoy: Diego y Denisse <Ayuda titulo="Guiones a cámara" texto="Un guion por persona. «Cómo grabarlo» abre el encuadre, cómo arrancar y qué enfatizar. Graba en una toma, mándalo al grupo de Telegram y Yapper lo publica a las 05:30 del día siguiente." /></h2><span class="meta">{{ deCamara.length }} de 2</span></header>
       <div class="fichas">
         <GuionCard v-for="g in deCamara" :key="g.nombre" :guion="g" />
-        <p v-if="!deCamara.length" class="vacio" style="grid-column:1/-1">Todavía no hay guiones a cámara de hoy ({{ hoy }}).</p>
+        <p v-if="!deCamara.length" class="vacio" style="flex-basis:100%">Todavía no hay guiones a cámara de hoy ({{ hoy }}).</p>
       </div>
     </section>
 
@@ -74,7 +74,7 @@ const patronHoy = computed(() => investigacionHoy.value ? seccion(investigacionH
       <header><h2>Reels con IA de hoy (Radar 10K) <Ayuda titulo="Reels con IA" texto="Los guiones que Radar produce solo: el de la mañana sale a las 09:00 y el de la noche a las 19:00. No hay que grabar nada." /></h2><span class="meta">{{ deIA.length }} de 2</span></header>
       <div class="fichas">
         <GuionCard v-for="g in deIA" :key="g.nombre" :guion="g" />
-        <p v-if="!deIA.length" class="vacio" style="grid-column:1/-1">Todavía no hay guiones de reel con IA para hoy.</p>
+        <p v-if="!deIA.length" class="vacio" style="flex-basis:100%">Todavía no hay guiones de reel con IA para hoy.</p>
       </div>
     </section>
   </template>
@@ -88,6 +88,7 @@ const patronHoy = computed(() => investigacionHoy.value ? seccion(investigacionH
 .ref .nums { color: var(--muted); margin-top: 4px; }
 .ref .nums b { color: var(--text); font-weight: 600; }
 .botones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-.fichas { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
-@media (min-width: 640px) { .fichas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fichas { display: flex; flex-wrap: wrap; gap: var(--gap); }
+.fichas > * { flex: 1 1 100%; min-width: 0; }
+@media (min-width: 640px) { .fichas > * { flex-basis: calc(50% - var(--gap) / 2); } }
 </style>

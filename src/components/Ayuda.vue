@@ -47,7 +47,7 @@ onBeforeUnmount(() => { document.removeEventListener('click', fuera); window.rem
 <style>
 /* sin scoped: el globo vive en <body> por el Teleport */
 .ayuda { position: relative; display: inline-flex; vertical-align: middle; }
-.ayuda .i { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--control); background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 600; cursor: pointer; display: grid; place-items: center; padding: 0; line-height: 1; transition: background .15s, color .15s; }
+.ayuda .i { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--control); background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; transition: background .15s, color .15s; }
 .ayuda .i:hover, .ayuda .i[aria-expanded="true"] { background: #fff; color: #0a0a0a; border-color: #fff; }
 .globo { position: fixed; z-index: 60; background: #fff; color: #0a0a0a; padding: 10px 12px; border-radius: 8px; font-size: 12px; line-height: 17px; font-weight: 400; box-shadow: 0 8px 24px rgba(0, 0, 0, .35); transform-origin: top left; }
 .globo b { display: block; margin-bottom: 2px; font-weight: 600; }

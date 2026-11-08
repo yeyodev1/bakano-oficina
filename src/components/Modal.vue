@@ -26,7 +26,7 @@ watch(() => props.abierto, v => { document.body.style.overflow = v ? 'hidden' : 
 </template>
 
 <style scoped>
-.fondo { position: fixed; inset: 0; background: rgba(0, 0, 0, .6); display: grid; place-items: end center; z-index: 40; }
+.fondo { position: fixed; inset: 0; background: rgba(0, 0, 0, .6); display: flex; align-items: flex-end; justify-content: center; z-index: 40; }
 .hoja { background: var(--surface); width: 100%; max-width: 760px; max-height: 88vh; overflow: auto; border-radius: 12px 12px 0 0; padding: 16px 20px 32px; border: 1px solid var(--border); }
 header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; position: sticky; top: -16px; background: var(--surface); padding: 4px 0 8px; }
 h2 { font-size: var(--fs-section); font-weight: 600; }
@@ -38,7 +38,7 @@ h2 { font-size: var(--fs-section); font-weight: 600; }
 .modal-enter-from, .modal-leave-to { opacity: 0; }
 .modal-enter-from .hoja, .modal-leave-to .hoja { transform: translateY(24px); opacity: 0; }
 @media (min-width: 640px) {
-  .fondo { place-items: center; }
+  .fondo { align-items: center; }
   .hoja { border-radius: 12px; padding-bottom: 20px; }
   .modal-enter-from .hoja, .modal-leave-to .hoja { transform: translateY(12px) scale(.98); }
 }

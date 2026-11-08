@@ -120,12 +120,13 @@ const globo = (a: Agente) => a.corriendo
 .reloj { position: absolute; left: 50%; top: 20px; transform: translateX(-50%); width: 320px; text-align: center; }
 .reloj .t { font-size: 30px; color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; }
 .reloj .d { font-size: 11px; color: #a7a9c4; }
-.tv { position: absolute; left: 390px; top: 80px; width: 360px; height: 150px; background: #06070d; border: 8px solid #2a2d4a; border-radius: 10px; padding: 8px 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-items: center; }
+.tv { position: absolute; left: 390px; top: 80px; width: 360px; height: 150px; background: #06070d; border: 8px solid #2a2d4a; border-radius: 10px; padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; align-content: center; }
+.tv .kpi { flex: 1 1 0; min-width: 0; }
 .tv::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 3px, rgba(255, 255, 255, .025) 3px 4px); pointer-events: none; }
 .kpi { text-align: center; }
 .kpi b { display: block; font-size: 26px; line-height: 1; color: #7ef0b0; text-shadow: 0 0 8px rgba(126, 240, 176, .6); font-variant-numeric: tabular-nums; }
 .kpi span { font-size: 9px; color: #8f93b8; text-transform: uppercase; letter-spacing: 1px; }
-.racha { grid-column: 1 / -1; display: flex; gap: 5px; justify-content: center; align-items: center; }
+.racha { flex: 0 0 100%; display: flex; gap: 5px; justify-content: center; align-items: center; }
 .racha i { width: 22px; height: 8px; border-radius: 2px; background: #222640; border: 1px solid #33375a; }
 .racha i.on { background: #ffd34d; box-shadow: 0 0 8px #ffd34d; }
 .racha small { font-size: 9px; color: #8f93b8; margin-left: 6px; }
@@ -143,7 +144,7 @@ const globo = (a: Agente) => a.corriendo
 .nota::before { content: ""; position: absolute; top: 3px; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: #e8334a; transform: translateX(-50%); }
 .nota b { display: block; font-size: 8px; color: #555; }
 .vacio { font-size: 11px; color: #4a3521; font-style: italic; }
-.ig { position: absolute; left: 560px; top: 250px; width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); display: grid; place-items: center; font-weight: 900; font-size: 26px; color: #fff; }
+.ig { position: absolute; left: 560px; top: 250px; width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 26px; color: #fff; }
 .ig small { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #a7a9c4; white-space: nowrap; }
 .puesto { position: absolute; top: 290px; width: 400px; height: 250px; }
 .puesto.radar { left: 70px; } .puesto.yapper { left: 680px; }
@@ -205,7 +206,7 @@ const globo = (a: Agente) => a.corriendo
 .pasos b.d { background: #49e58a; } .pasos b.a { background: #ffc247; animation: blink .9s infinite; }
 .avion { position: absolute; left: 330px; bottom: 170px; font-size: 26px; animation: vuela 2.2s ease-in-out infinite; }
 @keyframes vuela { 0% { transform: translate(0, 0) rotate(-10deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(220px, -120px) rotate(10deg); opacity: 0; } }
-.cinta { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255, 194, 71, .08) 0 20px, transparent 20px 40px); display: grid; place-items: center; pointer-events: none; }
+.cinta { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255, 194, 71, .08) 0 20px, transparent 20px 40px); display: flex; align-items: center; justify-content: center; pointer-events: none; }
 .cinta b { background: #ffc247; color: #000; padding: 8px 16px; font-family: ui-monospace, monospace; transform: rotate(-6deg); font-size: 14px; }
 @keyframes blink { 50% { opacity: .25; } }
 .vigila .ojo { animation: mira 5s infinite; }

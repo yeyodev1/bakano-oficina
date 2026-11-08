@@ -92,14 +92,18 @@ const agenda = computed(() => {
 <style scoped>
 .hallazgo { font-size: 16px; line-height: 24px; margin-bottom: var(--gap); }
 .pie-escena { margin: 6px 0 var(--gap); text-align: center; }
-.agenda li { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 40px; padding: 6px 0; border-top: 1px solid var(--rule); }
+.agenda li { display: flex; gap: 10px; align-items: center; min-height: 40px; padding: 6px 0; border-top: 1px solid var(--rule); }
+.agenda .t { flex: 0 0 48px; }
+.agenda .n { flex: 1 1 auto; min-width: 0; }
 .agenda li:first-child { border-top: 0; }
 .agenda .t { color: var(--muted); }
 .agenda .s { font-size: var(--fs-small); color: var(--muted); white-space: nowrap; }
 .agenda li.ahora .n, .agenda li.ahora .s { color: var(--hue); font-weight: 500; }
 .agenda li.hecho .n { color: var(--muted); text-decoration: line-through; }
 .botones { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.feed li { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--rule); }
+.feed li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--rule); }
+.feed li > span:nth-child(2) { flex: 1 1 auto; min-width: 0; }
+.feed .ico { flex: 0 0 24px; }
 .feed li:first-child { border-top: 0; }
 .feed .ico { font-size: 16px; line-height: 20px; text-align: center; }
 .feed .t { color: var(--muted); font-size: var(--fs-small); white-space: nowrap; line-height: 20px; }
