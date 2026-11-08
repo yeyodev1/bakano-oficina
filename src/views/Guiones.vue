@@ -29,8 +29,8 @@ const opciones = [['todos', 'Todos'], ['radar', 'Reels con IA'], ['diego', 'Dieg
 <style scoped>
 .segmentos { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; }
 .segmentos button { height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--control); background: var(--surface); white-space: nowrap; cursor: pointer; }
-.segmentos button.on { background: var(--text); color: #fff; border-color: var(--text); }
+.segmentos button.on { background: #ffffff; color: #0a0a0a; border-color: #ffffff; }
 .fichas { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
-@media (min-width: 640px) { .fichas { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1100px) { .fichas { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .fichas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .fichas { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 </style>

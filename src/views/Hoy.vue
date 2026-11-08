@@ -77,5 +77,5 @@ const deIA = computed(() => guionesHoy.value.filter(g => /radar/.test(g.nombre))
 .ref .nums b { color: var(--text); font-weight: 600; }
 .botones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
 .fichas { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
-@media (min-width: 640px) { .fichas { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 640px) { .fichas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

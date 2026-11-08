@@ -66,10 +66,10 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
 
 <style scoped>
 p + dl, dl { margin-top: 10px; }
-dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; }
+dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; }
 dt { font-weight: 600; white-space: nowrap; }
 dd { margin: 0; }
-.horas li { display: grid; grid-template-columns: 56px 1fr; gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
+.horas li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
 .horas li:first-child { border-top: 0; }
 .horas b { font-weight: 500; }
 .pasos, .reglas { padding-left: 20px; display: grid; gap: 8px; }

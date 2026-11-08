@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import AgenteCard from '../components/AgenteCard.vue'
+import Escena from '../components/Escena.vue'
 import Ayuda from '../components/Ayuda.vue'
 import { INSTAGRAM, TELEGRAM, falta, nombreAgente, proxima, useDatos } from '../datos'
 
@@ -37,6 +38,8 @@ const agenda = computed(() => {
   <template v-else-if="datos">
     <p class="hallazgo">{{ hallazgo }} <Ayuda titulo="Qué es esto" texto="Un resumen en una frase de lo que pasa ahora mismo. Debajo, cada agente con su paso actual. Todo se refresca solo cada 15 segundos." /></p>
     <div v-if="datos.pausa" class="aviso">PAUSA activa: los agentes miden y escriben, pero no publican. Se quita escribiendo /reanudar al bot en el grupo.</div>
+    <Escena :datos="datos" :ahora="ahora" />
+    <p class="meta pie-escena">La oficina en vivo: cada robot hace lo mismo que su agente. Debajo, el detalle paso a paso.</p>
 
     <section class="grid par" aria-label="Agentes">
       <AgenteCard class="c6" clave="radar-10k" :agente="datos.agentes['radar-10k']" :ahora="ahora" />
@@ -88,14 +91,15 @@ const agenda = computed(() => {
 
 <style scoped>
 .hallazgo { font-size: 16px; line-height: 24px; margin-bottom: var(--gap); }
-.agenda li { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; min-height: 40px; padding: 6px 0; border-top: 1px solid var(--rule); }
+.pie-escena { margin: 6px 0 var(--gap); text-align: center; }
+.agenda li { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 40px; padding: 6px 0; border-top: 1px solid var(--rule); }
 .agenda li:first-child { border-top: 0; }
 .agenda .t { color: var(--muted); }
 .agenda .s { font-size: var(--fs-small); color: var(--muted); white-space: nowrap; }
 .agenda li.ahora .n, .agenda li.ahora .s { color: var(--hue); font-weight: 500; }
 .agenda li.hecho .n { color: var(--muted); text-decoration: line-through; }
 .botones { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.feed li { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--rule); }
+.feed li { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--rule); }
 .feed li:first-child { border-top: 0; }
 .feed .ico { font-size: 16px; line-height: 20px; text-align: center; }
 .feed .t { color: var(--muted); font-size: var(--fs-small); white-space: nowrap; line-height: 20px; }

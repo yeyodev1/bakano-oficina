@@ -2,7 +2,7 @@
 // Ficha de un guion: para quién, el gancho, el porqué, y botones para leerlo, ver cómo grabarlo y copiarlo.
 import { computed, ref } from 'vue'
 import Modal from './Modal.vue'
-import { type Guion } from '../datos'
+import { type Guion, TELEGRAM } from '../datos'
 import { aHtml, campos, caption, comoGrabar, gancho, porQue } from '../md'
 
 const props = defineProps<{ guion: Guion; completo?: boolean }>()
@@ -47,20 +47,32 @@ async function copiar() {
     <Modal :abierto="modal === 'guion'" :titulo="guion.nombre" @cerrar="modal = ''">
       <div class="md" v-html="aHtml(guion.md)" />
     </Modal>
-    <Modal :abierto="modal === 'grabar'" :titulo="`Cómo grabar: ${quien.graba}`" @cerrar="modal = ''">
-      <div class="md">
-        <h4>Lo básico, siempre</h4>
+    <Modal :abierto="modal === 'grabar'" :titulo="`Cómo grabar este guion · ${quien.graba}`" @cerrar="modal = ''">
+      <div class="md grabar">
+        <p class="paso"><b>1. Tu primera frase, tal cual, mirando a la lente.</b> Sin «hola», sin presentarte: la primera frase ya es el gancho.</p>
+        <blockquote class="cita">«{{ titulo }}»</blockquote>
+        <p v-if="c['enfatizar'] || c['palabra_a_enfatizar'] || c['enfasis']" class="paso"><b>2. Enfatiza:</b> {{ c['enfatizar'] ?? c['palabra_a_enfatizar'] ?? c['enfasis'] }}</p>
+        <p v-else class="paso"><b>2. Enfatiza</b> la palabra que nombra el dolor en cada frase: baja la voz justo antes y súbela en esa palabra.</p>
+        <p class="paso"><b>3. Ritmo:</b> {{ c['duracion'] ?? '30 a 45 segundos' }}, una sola toma, pausa de medio segundo después del gancho y antes de la pregunta final.</p>
+        <p class="paso"><b>4. Cierra con la pregunta del caption, dicha tal cual,</b> y quédate 1 segundo en silencio mirando a la cámara:</p>
+        <blockquote v-if="caption(guion.md)" class="cita">{{ caption(guion.md).split('\n')[0] }}</blockquote>
+        <h4>Encuadre y luz</h4>
         <ul>
-          <li>Celular vertical, cámara a la altura de los ojos, la cara a unos 40 cm: formato «yapping», cerca y conversando.</li>
-          <li>Luz de frente (ventana o aro). Nada de luz detrás.</li>
-          <li>Una sola toma de 30 a 45 segundos. Si te trabas, repite desde el inicio; no edites a medias.</li>
-          <li>La primera frase ya es el gancho: sin «hola», sin presentarte. Mira a la lente.</li>
-          <li>Termina con la pregunta del caption, dicha tal cual, y quédate 1 segundo en silencio.</li>
-          <li>Mándalo al grupo de Telegram o déjalo en el servidor: Yapper lo publica a las 05:30 del día siguiente.</li>
+          <li>Celular vertical a la altura de los ojos, la cara a unos 40 cm (formato «yapping»: cerca y conversando).</li>
+          <li>Luz de frente (ventana o aro). Nada de luz detrás. Fondo simple, sin logos de clientes.</li>
+          <li v-if="c['encuadre']">{{ c['encuadre'] }}</li>
+          <li>Texto en pantalla sugerido: el gancho como título durante los primeros 2 segundos.</li>
         </ul>
-        <h4>Lo que pide este guion</h4>
-        <div v-if="grabar" v-html="aHtml(grabar)" />
-        <p v-else class="meta">Este guion no trae bloque de grabación; sigue lo básico y lee el guion completo.</p>
+        <h4>Antes de grabar</h4>
+        <ul>
+          <li>Léelo 3 veces en voz alta; en la tercera ya no leas, cuéntalo.</li>
+          <li>Haz 2 tomas completas y quédate con la que tenga más energía, no con la más perfecta.</li>
+          <li>El error más común: leer la pantalla y saludar. Si te trabas, repite desde el inicio.</li>
+        </ul>
+        <h4>Cuando esté listo</h4>
+        <p>Mándalo al grupo de Telegram (hasta 20 MB) o déjalo en el servidor. Yapper lo publica a las 05:30 del día siguiente con este caption; si lo quieres ya, dile al bot «publícalo ya».</p>
+        <a class="btn chico primario" :href="TELEGRAM.grupo" target="_blank" rel="noopener">Abrir el grupo de Telegram</a>
+        <template v-if="grabar"><h4>Lo que pide este guion en particular</h4><div v-html="aHtml(grabar)" /></template>
       </div>
     </Modal>
   </article>
@@ -70,8 +82,10 @@ async function copiar() {
 .ficha { border: 1px solid var(--border); border-radius: var(--radius-card); padding: 14px 16px; background: var(--surface); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .arriba { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 h3 { font-size: 15px; line-height: 21px; font-weight: 600; }
-dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; }
+dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; margin: 0; }
 dt { color: var(--muted); font-size: var(--fs-small); line-height: 20px; white-space: nowrap; }
 dd { margin: 0; overflow-wrap: anywhere; }
 .botones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+.grabar .paso { margin: 8px 0; }
+.cita { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--text); border-left: 3px solid var(--hue); margin: 8px 0 12px; padding-left: 12px; }
 </style>

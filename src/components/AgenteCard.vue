@@ -31,13 +31,13 @@ const QUE_PASO: Record<string, string> = {
   <article class="panel tarjeta">
     <div class="cab">
       <svg class="avatar" viewBox="0 0 56 56" aria-hidden="true">
-        <rect x="10" y="8" width="36" height="30" rx="9" fill="#fff" :stroke="clave === 'radar-10k' ? '#0a0a0a' : '#6b6b6b'" stroke-width="2" />
-        <rect x="20" y="18" width="5" height="7" rx="1.5" :fill="clave === 'radar-10k' ? '#0a0a0a' : '#6b6b6b'" />
-        <rect x="31" y="18" width="5" height="7" rx="1.5" :fill="clave === 'radar-10k' ? '#0a0a0a' : '#6b6b6b'" />
-        <rect v-if="agente.corriendo" x="23" y="29" width="10" height="3" rx="1.5" :fill="clave === 'radar-10k' ? '#0a0a0a' : '#6b6b6b'" />
-        <path v-else d="M23 31 q5 -3 10 0" :stroke="clave === 'radar-10k' ? '#0a0a0a' : '#6b6b6b'" stroke-width="2" fill="none" />
-        <rect x="18" y="40" width="20" height="12" rx="4" :fill="clave === 'radar-10k' ? '#1d5fbf' : '#8a8a8a'" />
-        <template v-if="clave === 'radar-10k'"><line x1="28" y1="8" x2="28" y2="2" stroke="#0a0a0a" stroke-width="2" /><circle cx="28" cy="2" r="2" :fill="agente.corriendo ? '#1d5fbf' : '#0a0a0a'" /></template>
+        <rect x="10" y="8" width="36" height="30" rx="9" fill="#e9ecff" :stroke="clave === 'radar-10k' ? '#2a2d4a' : '#6b6b6b'" stroke-width="2" />
+        <rect x="20" y="18" width="5" height="7" rx="1.5" :fill="clave === 'radar-10k' ? '#1b1d33' : '#6b6b6b'" />
+        <rect x="31" y="18" width="5" height="7" rx="1.5" :fill="clave === 'radar-10k' ? '#1b1d33' : '#6b6b6b'" />
+        <rect v-if="agente.corriendo" x="23" y="29" width="10" height="3" rx="1.5" :fill="clave === 'radar-10k' ? '#1b1d33' : '#6b6b6b'" />
+        <path v-else d="M23 31 q5 -3 10 0" :stroke="clave === 'radar-10k' ? '#1b1d33' : '#6b6b6b'" stroke-width="2" fill="none" />
+        <rect x="18" y="40" width="20" height="12" rx="4" :fill="clave === 'radar-10k' ? '#5b9bff' : '#8a8a8a'" />
+        <template v-if="clave === 'radar-10k'"><line x1="28" y1="8" x2="28" y2="2" stroke="#1b1d33" stroke-width="2" /><circle cx="28" cy="2" r="2" :fill="agente.corriendo ? '#5b9bff' : '#1b1d33'" /></template>
         <rect v-else x="44" y="24" width="5" height="10" rx="2.5" fill="#6b6b6b" />
       </svg>
       <div>
@@ -80,7 +80,7 @@ const QUE_PASO: Record<string, string> = {
 
 <style scoped>
 .tarjeta { display: flex; flex-direction: column; }
-.cab { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+.cab { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; }
 .avatar { width: 56px; height: 56px; }
 h2 { flex-wrap: wrap; }
 .que { color: var(--muted); margin-top: 2px; }
@@ -90,7 +90,7 @@ h2 { flex-wrap: wrap; }
 .barra i { display: block; height: 100%; background: var(--hue); border-radius: 3px; transition: width .6s cubic-bezier(.22, 1, .36, 1); }
 .barra.ind i { width: 30%; animation: ind 1.4s ease-in-out infinite; }
 @keyframes ind { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
-.pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 10px; margin-top: 10px; font-size: var(--fs-small); line-height: 18px; padding: 0; list-style: none; }
+.pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; margin-top: 10px; font-size: var(--fs-small); line-height: 18px; padding: 0; list-style: none; }
 .pasos li { display: flex; align-items: center; gap: 6px; color: var(--muted); white-space: nowrap; overflow: hidden; }
 .pasos li span { overflow: hidden; text-overflow: ellipsis; }
 .pasos li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--control); flex: none; }
@@ -98,5 +98,5 @@ h2 { flex-wrap: wrap; }
 .pasos li.actual { color: var(--hue); font-weight: 500; } .pasos li.actual::before { background: var(--hue); border-color: var(--hue); animation: pulso 1.2s infinite; }
 .pista { margin-top: 8px; }
 .pie { margin-top: auto; padding-top: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-@media (min-width: 900px) { .pasos { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 900px) { .pasos { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 </style>

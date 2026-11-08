@@ -29,5 +29,5 @@ const lista = computed(() => (datos.value?.bitacoras ?? []).filter(b => filtro.v
 <style scoped>
 .segmentos { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 8px; }
 .segmentos button { height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--control); background: var(--surface); white-space: nowrap; cursor: pointer; }
-.segmentos button.on { background: var(--text); color: #fff; border-color: var(--text); }
+.segmentos button.on { background: #ffffff; color: #0a0a0a; border-color: #ffffff; }
 </style>
