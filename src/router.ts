@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 export const secciones = [
   { path: '/', name: 'ahora', titulo: 'Ahora', icono: '●', que: 'Qué está haciendo cada agente en este momento, paso a paso.' },
   { path: '/hoy', name: 'hoy', titulo: 'Plan de hoy', icono: '◎', que: 'Qué reel replicamos hoy, por qué, los guiones y cómo grabarlos.' },
+  { path: '/investigacion', name: 'investigacion', titulo: 'Investigación', icono: '⌕', que: 'Qué buscó Yapper hoy, qué encontró y por qué grabamos este tipo de video.' },
   { path: '/guiones', name: 'guiones', titulo: 'Guiones', icono: '≡', que: 'Todos los guiones escritos por los agentes, con el porqué de cada uno.' },
   { path: '/publicado', name: 'publicado', titulo: 'Publicado', icono: '↗', que: 'Los reels que publicaron los agentes y los videos en espera.' },
   { path: '/metricas', name: 'metricas', titulo: 'Métricas', icono: '▮', que: 'Vistas, alcance, racha hacia la meta y los últimos reels de la cuenta.' },
@@ -15,6 +16,7 @@ export const router = createRouter({
   routes: [
     { path: '/', name: 'ahora', component: () => import('./views/Ahora.vue') },
     { path: '/hoy', name: 'hoy', component: () => import('./views/Hoy.vue') },
+    { path: '/investigacion', name: 'investigacion', component: () => import('./views/Investigacion.vue') },
     { path: '/guiones', name: 'guiones', component: () => import('./views/Guiones.vue') },
     { path: '/publicado', name: 'publicado', component: () => import('./views/Publicado.vue') },
     { path: '/metricas', name: 'metricas', component: () => import('./views/Metricas.vue') },

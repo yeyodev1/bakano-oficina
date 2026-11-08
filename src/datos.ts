@@ -14,7 +14,7 @@ export interface Datos {
   bot: boolean; vps: { disco: string; carga: string; ram: string }
   metricas: { ayer: { views?: number; reach?: number }; reels: Reel[] }
   racha: number; publicados: { agente: string; fecha: string; url: string }[]
-  guiones: Guion[]; listos: { nombre: string; mb: number; fecha: string }[]
+  guiones: Guion[]; investigaciones: Guion[]; listos: { nombre: string; mb: number; fecha: string }[]
   bitacoras: Bitacora[]; actividad: { hora: string; texto: string }[]
   horarios: { yapper: string; radar: string[]; latido: string }
 }

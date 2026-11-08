@@ -35,7 +35,7 @@ const estado = computed(() => {
         <p class="meta">Horario de Ecuador. Esta página se actualiza sola cada 15 segundos.</p>
       </div>
     </aside>
-    <div v-if="menu" class="velo" @click="menu = false" />
+    <Transition name="velo"><div v-if="menu" class="velo" @click="menu = false" /></Transition>
 
     <div class="cuerpo">
       <header class="barra">
@@ -48,7 +48,11 @@ const estado = computed(() => {
       <main>
         <div v-if="error && !datos" class="aviso rojo">No llego al servidor de los agentes ({{ error }}). Reintento solo cada 15 segundos.</div>
         <div v-else-if="error && datos" class="aviso">Perdí la conexión hace un momento; muestro los últimos datos ({{ ultimaCarga?.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' }) }}). Reintento solo.</div>
-        <RouterView />
+        <RouterView v-slot="{ Component, route }">
+          <Transition name="vista" mode="out-in">
+            <component :is="Component" :key="route.path" />
+          </Transition>
+        </RouterView>
       </main>
       <nav class="movil" aria-label="Secciones">
         <RouterLink v-for="s in secciones.slice(0, 5)" :key="s.name" :to="s.path"><span aria-hidden="true">{{ s.icono }}</span>{{ s.titulo.split(' ')[0] }}</RouterLink>
@@ -60,7 +64,13 @@ const estado = computed(() => {
 
 <style scoped>
 .app { min-height: 100svh; }
-.lateral { position: fixed; inset: 0 auto 0 0; width: var(--sidebar); background: var(--ground); border-right: 1px solid var(--border); padding: 16px 12px; display: flex; flex-direction: column; gap: 16px; transform: translateX(-100%); transition: transform .2s; z-index: 30; }
+.lateral { position: fixed; inset: 0 auto 0 0; width: var(--sidebar); background: var(--ground); border-right: 1px solid var(--border); padding: 16px 12px; display: flex; flex-direction: column; gap: 16px; transform: translateX(-100%); transition: transform .26s cubic-bezier(.22, 1, .36, 1); z-index: 30; }
+.velo-enter-active, .velo-leave-active { transition: opacity .2s ease; }
+.velo-enter-from, .velo-leave-to { opacity: 0; }
+.vista-enter-active { transition: opacity .18s ease, transform .22s cubic-bezier(.22, 1, .36, 1); }
+.vista-leave-active { transition: opacity .12s ease, transform .12s ease-in; }
+.vista-enter-from { opacity: 0; transform: translateY(8px); }
+.vista-leave-to { opacity: 0; transform: translateY(-4px); }
 .lateral.abierto { transform: none; background: var(--surface); }
 .velo { position: fixed; inset: 0; background: rgba(10, 10, 10, .4); z-index: 25; }
 .marca { display: flex; gap: 10px; align-items: center; padding: 4px 8px; }

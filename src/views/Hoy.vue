@@ -18,10 +18,21 @@ const aprendi = computed(() => seccion(bitYapper.value?.md ?? '', 'aprendi') || 
 const cambio = computed(() => seccion(bitYapper.value?.md ?? '', 'cambio', 'manana') || seccion(bitRadar.value?.md ?? '', 'cambio', 'manana'))
 const deCamara = computed(() => guionesHoy.value.filter(g => /diego|denis/.test(g.nombre)))
 const deIA = computed(() => guionesHoy.value.filter(g => /radar/.test(g.nombre)))
+const investigacionHoy = computed(() => (datos.value?.investigaciones ?? []).find(i => i.nombre.startsWith(hoy.value)))
+const porQueHoy = computed(() => investigacionHoy.value ? seccion(investigacionHoy.value.md, 'por que hoy', 'grabamos') : '')
+const patronHoy = computed(() => investigacionHoy.value ? seccion(investigacionHoy.value.md, 'patron') : '')
 </script>
 
 <template>
   <template v-if="datos">
+    <section class="panel destacado">
+      <header><h2>Por qué hoy grabamos este tipo de video <Ayuda titulo="Investigación de hoy" texto="Yapper investiga cada mañana qué está funcionando y decide qué formato, gancho y segmento probamos hoy. Aquí está su conclusión; el informe completo, en la sección Investigación." /></h2><RouterLink class="btn chico" to="/investigacion">Ver la investigación completa</RouterLink></header>
+      <template v-if="porQueHoy || patronHoy">
+        <div v-if="patronHoy" class="md"><h4>Patrón del día</h4><div v-html="aHtml(patronHoy)" /></div>
+        <div v-if="porQueHoy" class="md"><h4>Por qué este tipo de video</h4><div v-html="aHtml(porQueHoy)" /></div>
+      </template>
+      <p v-else class="meta">El informe de investigación de hoy llega a las 05:30 con los guiones. Mientras, abajo está el diagnóstico de la última corrida.</p>
+    </section>
     <section class="grid par">
       <article class="panel c6">
         <header><h2>Reel de referencia <Ayuda titulo="Reel de referencia" texto="El reel de la cuenta que más vistas tiene en los últimos días y el que más conversación generó por vista (comentarios + guardados + compartidos). Son los que vale la pena replicar cambiando una sola cosa." /></h2><span class="meta">últimos {{ reels.length }} reels</span></header>
@@ -70,6 +81,7 @@ const deIA = computed(() => guionesHoy.value.filter(g => /radar/.test(g.nombre))
 </template>
 
 <style scoped>
+.destacado { border-color: #243b66; background: var(--hue-bg); }
 .ref + .ref { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
 .ref .l { color: var(--muted); font-size: var(--fs-small); }
 .ref .cap { display: block; font-weight: 500; margin-top: 2px; text-decoration: underline; text-underline-offset: 3px; }
