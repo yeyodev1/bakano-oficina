@@ -12,8 +12,8 @@ cada 15 segundos.
 - Es una app estática (Vue 3 + TypeScript + Vite + vue-router). No tiene backend propio ni secretos.
 - Lee `datos.json`, que un proceso del servidor de los agentes regenera cada 30 segundos con el estado de los procesos,
   las bitácoras, los guiones, lo publicado y las métricas de Instagram.
-- En producción se sirve desde el mismo dominio que `datos.json`; en desarrollo se apunta al servidor con
-  `VITE_DATOS_URL` (ver `.env.development`).
+- En producción se sirve desde el mismo dominio que `datos.json`; en desarrollo (localhost) lee el `datos.json`
+  público de agentes.bakano.ec.
 
 ## Desarrollo
 

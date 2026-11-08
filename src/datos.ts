@@ -19,7 +19,8 @@ export interface Datos {
   horarios: { yapper: string; radar: string[]; latido: string }
 }
 
-const URL = (import.meta.env.VITE_DATOS_URL as string | undefined) ?? '/datos.json'
+// En producción datos.json vive en el mismo dominio; en desarrollo (localhost) se lee del servidor público.
+const URL = /bakano\.ec$/.test(location.hostname) ? '/datos.json' : 'https://agentes.bakano.ec/datos.json'
 const datos = ref<Datos | null>(null)
 const error = ref('')
 const cargando = ref(true)
