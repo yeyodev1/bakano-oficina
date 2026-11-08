@@ -39,11 +39,11 @@ const bloquesDia = (md: string) => ([
   <template v-if="datos && t">
     <section class="panel estado">
       <div class="fila">
-        <span class="pill" :class="t.corriendo ? 'pos' : ''"><i v-if="t.corriendo" class="punto" />{{ t.corriendo ? `Investigando ahora · ${t.minutos} min` : 'Investigador en reposo' }}</span>
-        <span class="meta">Rondas de hoy: <b class="num">{{ t.rondas_hoy }}</b> de 6 · última {{ t.ultima ? t.ultima.slice(5, 16).replace('T', ' ') : '—' }} · próxima {{ proximaRonda ? `en ${falta(proximaRonda, ahora)}` : '—' }}</span>
-        <Ayuda titulo="Investigación continua" texto="Yapper investiga cada 3 horas (08:00, 11:00, 14:00, 17:00, 20:00 y 23:00): qué se habla hoy en Ecuador, qué formatos y ganchos están pegando en reels, qué funciona en nuestra cuenta y el calendario comercial próximo. Convierte cada hallazgo en una idea lista para Ecuador y avisa al grupo si aparece una oportunidad fuerte." />
+        <span class="pill" :class="'pos'"><i v-if="t.corriendo" class="punto" />{{ t.corriendo ? `Radar escaneando ahora · ${t.minutos} min` : 'Radar encendido · entre rondas' }}</span>
+        <span class="meta">Rondas de hoy: <b class="num">{{ t.rondas_hoy }}</b> · última {{ t.ultima ? t.ultima.slice(5, 16).replace('T', ' ') : '—' }} · próxima {{ proximaRonda ? `en ${falta(proximaRonda, ahora)}` : '—' }}</span>
+        <Ayuda titulo="Investigación continua" texto="Radar 10K escanea cada hora, las 24 horas: qué se habla hoy en Ecuador, qué formatos y ganchos están pegando en reels, qué funciona en nuestra cuenta y el calendario comercial próximo. Convierte cada hallazgo en una idea lista para Ecuador y avisa al grupo si aparece una oportunidad fuerte." />
       </div>
-      <p class="meta">Horas de ronda: {{ t.horas.join(' · ') }}. Cada ronda deja ideas listas para pegarla en Ecuador y una señal para los agentes.</p>
+      <p class="meta">Una ronda cada hora (minuto 07). Cada ronda deja ideas listas para pegarla en Ecuador, una señal para los agentes y un mensaje al grupo con enlaces dirigido a quien le toca.</p>
     </section>
 
     <section class="panel vigentes">
@@ -53,7 +53,7 @@ const bloquesDia = (md: string) => ([
     </section>
 
     <section class="panel">
-      <header><h2>Rondas de hoy <Ayuda titulo="Rondas" texto="Cada ronda: qué se habla hoy en Ecuador, formatos y ganchos en auge (con enlaces), tres ideas listas para pegarla en Ecuador y una señal para los agentes." /></h2><span class="meta">{{ rondas.length }} de 6</span></header>
+      <header><h2>Rondas de hoy <Ayuda titulo="Rondas" texto="Cada ronda: qué se habla hoy en Ecuador, formatos y ganchos en auge (con enlaces), tres ideas listas para pegarla en Ecuador y una señal para los agentes." /></h2><span class="meta">{{ rondas.length }}</span></header>
       <details v-for="(r, i) in rondas" :key="r.titulo" class="pliegue" :open="i === 0">
         <summary><span>{{ r.titulo }}</span><span class="meta">{{ i === 0 ? 'la más reciente' : '' }}</span></summary>
         <div class="md" v-html="aHtml(r.md)" />

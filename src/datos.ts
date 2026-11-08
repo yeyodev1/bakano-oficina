@@ -5,6 +5,7 @@ export interface Bitacora { agente: string; nombre: string; fecha: string; md: s
 export interface Agente {
   corriendo: boolean; minutos: number; paso: number; fase: string; pasos: string[]
   ultima_bitacora: { nombre: string; fecha: string; texto: string } | null; proximas: string[]; detalle: string
+  vigila?: { ultima: string | null; rondas_hoy: number; cada: string }
 }
 export interface Reel { permalink: string; timestamp: string; views: number | null; reach: number | null; likes: number | null; comments: number | null; saved: number | null; shares: number | null; caption: string }
 export interface Guion { nombre: string; fecha: string; md: string }
@@ -82,7 +83,7 @@ export function falta(d: Date, desde = Date.now()): string {
 export const fmt = (n: number | null | undefined) => n == null ? '—' : n.toLocaleString('es-EC')
 export const nombreAgente = (k: string) => k === 'radar-10k' ? 'Radar 10K' : k === 'yapper' ? 'Yapper' : k
 export const INFO = {
-  'radar-10k': { que: 'Reels con IA, sin cara. Produce y publica a las 09:00 y a las 19:00 con el guion que deja Yapper.' },
+  'radar-10k': { que: 'Siempre encendido: cada hora escanea tendencias de Ecuador, formatos que pegan y referentes, y guarda ideas listas. Produce y publica reels con IA a las 09:00 y a las 19:00.' },
   yapper: { que: 'A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego y uno para Denisse) y publica el video grabado que haya en espera.' },
 } as const
 export const TELEGRAM = { grupo: 'https://t.me/+msK_Z1jzdrFjOTJh', bot: 'https://t.me/MakerVideosBakano_bot' }

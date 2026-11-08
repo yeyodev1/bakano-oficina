@@ -8,7 +8,7 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
       <header><h2>Qué es esta oficina</h2></header>
       <p>Dos agentes de inteligencia artificial trabajan solos en un servidor para la cuenta <a :href="INSTAGRAM" target="_blank" rel="noopener">@bakano.ec</a>. Esta página muestra, en tiempo real, qué hace cada uno, qué publicó y qué toca grabar. Se actualiza sola cada 15 segundos.</p>
       <dl>
-        <dt>Radar 10K</dt><dd>Produce reels con IA, sin cara: dibuja lo que dice la voz. Publica a las 09:00 y a las 19:00.</dd>
+        <dt>Radar 10K</dt><dd>Siempre encendido: cada hora escanea tendencias y referentes y acumula ideas probadas. Produce reels con IA, sin cara, y los publica a las 09:00 y a las 19:00.</dd>
         <dt>Yapper</dt><dd>A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego, uno para Denisse) y publica el video grabado que haya en espera.</dd>
         <dt>Meta</dt><dd>10.000 vistas diarias durante 10 días seguidos, con conversación real: comentarios, guardados, compartidos y mensajes.</dd>
       </dl>
@@ -16,7 +16,7 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
     <article class="panel c6">
       <header><h2>Horario del día (Ecuador)</h2></header>
       <ul class="horas">
-        <li><b class="num">cada 3 h</b><span>Yapper investiga tendencias (Ecuador y nicho) y deja ideas listas; avisa si hay una oportunidad fuerte</span></li>
+        <li><b class="num">cada hora</b><span>Radar escanea tendencias (Ecuador y nicho), guarda ideas listas y manda al grupo los hallazgos con enlaces, dirigidos a Diego, Denisse o al propio Radar</span></li>
         <li><b class="num">05:30</b><span>Yapper: informe al grupo y los 4 guiones del día</span></li>
         <li><b class="num">07:00</b><span>Latido del servidor en el grupo (sigue vivo, disco, pausa)</span></li>
         <li><b class="num">09:00</b><span>Radar: reel de la mañana publicado</span></li>

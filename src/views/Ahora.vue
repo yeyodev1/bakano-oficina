@@ -10,7 +10,7 @@ const hallazgo = computed(() => {
   const d = datos.value; if (!d) return ''
   const activos = (['radar-10k', 'yapper'] as const).filter(k => d.agentes[k].corriendo).map(k => `${nombreAgente(k)} está ${d.agentes[k].fase}`)
   const siguiente = (['radar-10k', 'yapper'] as const).map(k => ({ k, d: proxima(d.agentes[k].proximas, new Date(ahora.value)) })).sort((a, b) => a.d.getTime() - b.d.getTime())[0]!
-  const parte1 = activos.length ? activos.join(' y ') + '.' : `Los dos agentes descansan; el próximo es ${nombreAgente(siguiente.k)} en ${falta(siguiente.d, ahora.value)}.`
+  const parte1 = activos.length ? activos.join(' y ') + '.' : `Radar está encendido vigilando tendencias; el próximo turno de producción es ${nombreAgente(siguiente.k)} en ${falta(siguiente.d, ahora.value)}.`
   const parte2 = publicadosHoy.value.length ? ` Hoy se publicaron ${publicadosHoy.value.length} reel${publicadosHoy.value.length > 1 ? 's' : ''}.` : ' Hoy todavía no se publica nada.'
   return parte1 + parte2
 })

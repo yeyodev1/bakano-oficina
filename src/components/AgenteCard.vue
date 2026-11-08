@@ -11,6 +11,7 @@ const n = computed(() => props.agente.pasos.length)
 const pct = computed(() => props.agente.corriendo ? Math.round(((props.agente.paso + 0.5) / n.value) * 100) : 0)
 const indeterminado = computed(() => /render|publica|voz/.test(props.agente.fase.toLowerCase()))
 const prox = computed(() => proxima(props.agente.proximas, new Date(props.ahora)))
+const minutosARonda = computed(() => { const d = new Date(props.ahora); const m = d.getMinutes(); return m < 7 ? 7 - m : 67 - m })
 const QUE_PASO: Record<string, string> = {
   Memoria: 'Lee sus bitácoras de los últimos 7 días para no repetirse.',
   Medir: 'Consulta Instagram: vistas de ayer y métricas de cada reel.',
@@ -43,7 +44,7 @@ const QUE_PASO: Record<string, string> = {
       <div>
         <h2>
           {{ nombreAgente(clave) }}
-          <span class="pill" :class="agente.corriendo ? 'pos' : ''"><i v-if="agente.corriendo" class="punto" />{{ agente.corriendo ? 'Trabajando' : 'En reposo' }}</span>
+          <span class="pill" :class="agente.corriendo ? 'pos' : agente.vigila ? 'vig' : ''"><i v-if="agente.corriendo || agente.vigila" class="punto" :class="{ lento: !agente.corriendo }" />{{ agente.corriendo ? 'Trabajando' : agente.vigila ? 'Vigilando' : 'En reposo' }}</span>
           <Ayuda :titulo="nombreAgente(clave)" :texto="INFO[clave].que" />
         </h2>
         <p class="que">{{ INFO[clave].que }}</p>
@@ -52,8 +53,10 @@ const QUE_PASO: Record<string, string> = {
 
     <p class="fase">
       <template v-if="agente.corriendo">{{ agente.fase.charAt(0).toUpperCase() + agente.fase.slice(1) }}</template>
+      <template v-else-if="agente.vigila">Radar encendido: próxima ronda de tendencias en {{ minutosARonda }} min · reels a las {{ agente.proximas.join(' y ') }}</template>
       <template v-else>Próxima corrida a las {{ agente.proximas.join(' y ') }}</template>
       <small v-if="agente.corriendo">Paso {{ agente.paso + 1 }} de {{ n }} · lleva {{ agente.minutos }} min<template v-if="agente.detalle"> · proyecto «{{ agente.detalle.replace(/^\d{4}-\d\d-\d\d-/, '').replace(/-/g, ' ') }}»</template></small>
+      <small v-else-if="agente.vigila">{{ agente.vigila.rondas_hoy }} rondas hoy · última {{ agente.vigila.ultima ? agente.vigila.ultima.slice(11, 16) : '—' }} · próximo reel en {{ falta(prox, ahora) }}</small>
       <small v-else>Faltan {{ falta(prox, ahora) }}<template v-if="agente.ultima_bitacora"> · última corrida {{ agente.ultima_bitacora.fecha.slice(5, 16).replace('T', ' ') }}</template></small>
     </p>
 
@@ -79,6 +82,8 @@ const QUE_PASO: Record<string, string> = {
 </template>
 
 <style scoped>
+.pill.vig { background: var(--hue-bg); color: var(--hue); }
+.punto.lento { background: var(--hue); animation-duration: 2.4s; }
 .tarjeta { display: flex; flex-direction: column; }
 .cab { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; }
 .avatar { width: 56px; height: 56px; }

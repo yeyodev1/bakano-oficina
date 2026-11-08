@@ -41,7 +41,9 @@ const agenda = computed(() => {
 })
 const globo = (a: Agente) => a.corriendo
   ? { t: a.fase.charAt(0).toUpperCase() + a.fase.slice(1), s: `hace ${a.minutos} min${a.detalle ? ' · ' + a.detalle.replace(/^\d{4}-\d\d-\d\d-/, '').replace(/-/g, ' ') : ''}` }
-  : { t: 'Descansando.', s: `Vuelvo a las ${a.proximas.join(' y ')}.` }
+  : a.vigila
+    ? { t: 'Radar encendido.', s: `Escaneo tendencias cada hora (${a.vigila.rondas_hoy} rondas hoy). Reels a las ${a.proximas.join(' y ')}.` }
+    : { t: 'Descansando.', s: `Vuelvo a las ${a.proximas.join(' y ')}.` }
 </script>
 
 <template>
@@ -76,14 +78,15 @@ const globo = (a: Agente) => a.corriendo
         <div class="monitor">
           <div class="scr">
             <div class="ttl">{{ (k === 'radar' ? pr : py).titulo }}</div>
-            <template v-if="(k === 'radar' ? pr : py).tipo === 'reposo'">{{ (k === 'radar' ? pr : py).texto }}<br><b class="px grande">{{ a.proximas.join(' · ') }}</b><br><span class="dim">{{ (k === 'radar' ? pr : py).sub }}</span></template>
+            <template v-if="(k === 'radar' ? pr : py).tipo === 'reposo' && a.vigila">RADAR ACTIVO · escaneando<div class="barrido"><i /></div><span class="dim">última ronda {{ a.vigila.ultima ? a.vigila.ultima.slice(11, 16) : '—' }} · {{ a.vigila.rondas_hoy }} hoy</span></template>
+            <template v-else-if="(k === 'radar' ? pr : py).tipo === 'reposo'">{{ (k === 'radar' ? pr : py).texto }}<br><b class="px grande">{{ a.proximas.join(' · ') }}</b><br><span class="dim">{{ (k === 'radar' ? pr : py).sub }}</span></template>
             <template v-else-if="(k === 'radar' ? pr : py).tipo === 'voz'">{{ (k === 'radar' ? pr : py).texto }}<div class="onda"><i v-for="i in 14" :key="i" /></div></template>
             <template v-else-if="(k === 'radar' ? pr : py).tipo === 'dibujo'">{{ (k === 'radar' ? pr : py).texto }}<span class="curs" /><div class="pincel"><i /><i /><i /></div></template>
             <template v-else-if="(k === 'radar' ? pr : py).tipo === 'barra'">{{ (k === 'radar' ? pr : py).texto }}<div class="barra ind"><i /></div><span class="dim">{{ (k === 'radar' ? pr : py).sub }}</span></template>
             <template v-else>{{ (k === 'radar' ? pr : py).texto }}<span class="curs" /><br><span class="dim">{{ (k === 'radar' ? pr : py).sub }}</span></template>
           </div>
         </div>
-        <div class="robot" :class="[a.corriendo ? 'on ' + (/voz/.test(a.fase.toLowerCase()) ? 'habla' : 'teclea') : 'duerme']">
+        <div class="robot" :class="[a.corriendo ? 'on ' + (/voz/.test(a.fase.toLowerCase()) ? 'habla' : 'teclea') : a.vigila ? 'on vigila' : 'duerme']">
           <i v-if="k === 'radar'" class="ant" />
           <div class="cab"><i class="ojo i" /><i class="ojo d" /><i class="boca" /></div>
           <i v-if="k === 'yapper'" class="mic" />
@@ -91,7 +94,8 @@ const globo = (a: Agente) => a.corriendo
         </div>
         <div class="mesa" />
         <div class="globo"><b>{{ globo(a).t }}</b><small>{{ globo(a).s }}</small></div>
-        <div v-if="!a.corriendo" class="zzz"><span>z</span><span>z</span><span>z</span></div>
+        <div v-if="!a.corriendo && !a.vigila" class="zzz"><span>z</span><span>z</span><span>z</span></div>
+        <div v-if="!a.corriendo && a.vigila" class="radarp"><i /><i /><i /></div>
         <div v-if="a.corriendo && /publica/.test(a.fase.toLowerCase())" class="avion">✈️</div>
         <div class="pasos"><b v-for="(p, i) in a.pasos" :key="p" :title="p" :class="a.corriendo ? (i < a.paso ? 'd' : i === a.paso ? 'a' : '') : ''" /></div>
       </div>
@@ -203,4 +207,13 @@ const globo = (a: Agente) => a.corriendo
 .cinta { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255, 194, 71, .08) 0 20px, transparent 20px 40px); display: grid; place-items: center; pointer-events: none; }
 .cinta b { background: #ffc247; color: #000; padding: 8px 16px; font-family: ui-monospace, monospace; transform: rotate(-6deg); font-size: 14px; }
 @keyframes blink { 50% { opacity: .25; } }
+.vigila .ojo { animation: mira 5s infinite; }
+@keyframes mira { 0%, 40%, 100% { transform: translateX(0); } 50%, 80% { transform: translateX(3px); } 92% { transform: scaleY(.1); } }
+.radarp { position: absolute; left: 258px; top: 86px; width: 24px; height: 24px; }
+.radarp i { position: absolute; inset: 0; border: 2px solid #49e58a; border-radius: 50%; opacity: 0; animation: ping 2.4s infinite; }
+.radarp i:nth-child(2) { animation-delay: .8s; } .radarp i:nth-child(3) { animation-delay: 1.6s; }
+@keyframes ping { 0% { transform: scale(.3); opacity: .9; } 100% { transform: scale(2.2); opacity: 0; } }
+.barrido { position: relative; height: 30px; margin: 6px 0; background: radial-gradient(circle at 50% 100%, rgba(73, 229, 138, .15), transparent 70%); overflow: hidden; }
+.barrido i { position: absolute; left: 50%; bottom: 0; width: 60px; height: 60px; margin-left: -60px; transform-origin: 100% 100%; background: conic-gradient(from 270deg, rgba(73, 229, 138, .6), transparent 60deg); animation: barre 2s linear infinite; }
+@keyframes barre { to { transform: rotate(360deg); } }
 </style>
