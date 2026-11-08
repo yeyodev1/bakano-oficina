@@ -99,7 +99,8 @@ td .m { display: block; color: var(--muted); font-size: var(--fs-small); }
 
 details.pliegue { border-top: 1px solid var(--rule); padding: 10px 0; }
 details.pliegue:first-child { border-top: 0; }
-details.pliegue summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+details.pliegue summary { cursor: pointer; list-style: none; display: flex; gap: 12px; align-items: center; }
+details.pliegue summary > :first-child { flex: 1 1 auto; min-width: 0; }
 details.pliegue summary::-webkit-details-marker { display: none; }
 details.pliegue summary::after { content: "+"; color: var(--muted); font-size: 18px; line-height: 1; }
 details.pliegue[open] summary::after { content: "–"; }

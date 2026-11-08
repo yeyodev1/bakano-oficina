@@ -67,10 +67,12 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
 
 <style scoped>
 p + dl, dl { margin-top: 10px; }
-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; }
-dt { font-weight: 600; white-space: nowrap; }
-dd { margin: 0; }
-.horas li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
+dl { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+dt { flex: 0 0 150px; font-weight: 600; }
+dd { flex: 1 1 calc(100% - 162px); min-width: 0; margin: 0; }
+.horas li { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
+.horas li b { flex: 0 0 64px; }
+.horas li span { flex: 1 1 auto; min-width: 0; }
 .horas li:first-child { border-top: 0; }
 .horas b { font-weight: 500; }
 .pasos, .reglas { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }

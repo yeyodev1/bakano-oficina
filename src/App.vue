@@ -96,10 +96,11 @@ nav .item.router-link-exact-active { background: var(--active); color: var(--tex
 .vivo.verde i { background: var(--positive); animation: pulso 1.4s infinite; }
 .vivo.rojo i { background: var(--negative); }
 main { padding: 16px 16px calc(var(--nav-movil) + 16px); max-width: 1120px; width: 100%; margin: 0 auto; }
-.movil { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-movil); background: var(--surface); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); z-index: 20; padding-bottom: env(safe-area-inset-bottom); }
+.movil { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-movil); background: var(--surface); border-top: 1px solid var(--border); display: flex; z-index: 20; padding-bottom: env(safe-area-inset-bottom); }
 .movil a, .movil button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; color: var(--muted); text-decoration: none; border: 0; background: none; }
 .movil a span, .movil button span { font-size: 15px; line-height: 16px; }
 .movil a.router-link-exact-active { color: var(--text); font-weight: 600; }
+.movil > * { flex: 1 1 0; min-width: 0; }
 @media (min-width: 900px) {
   .lateral { transform: none; }
   .velo, .hamb, .movil { display: none; }
