@@ -12,6 +12,7 @@ export interface Datos {
   ahora: string; pausa: boolean; turno: string
   agentes: Record<'radar-10k' | 'yapper', Agente>
   bot: boolean; vps: { disco: string; carga: string; ram: string }
+  tendencias: { corriendo: boolean; minutos: number; ultima: string | null; rondas_hoy: number; vigentes: string; horas: string[] }
   metricas: { ayer: { views?: number; reach?: number }; reels: Reel[] }
   racha: number; publicados: { agente: string; fecha: string; url: string }[]
   guiones: Guion[]; investigaciones: Guion[]; listos: { nombre: string; mb: number; fecha: string }[]

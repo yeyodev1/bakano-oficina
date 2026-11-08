@@ -16,6 +16,7 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
     <article class="panel c6">
       <header><h2>Horario del día (Ecuador)</h2></header>
       <ul class="horas">
+        <li><b class="num">cada 3 h</b><span>Yapper investiga tendencias (Ecuador y nicho) y deja ideas listas; avisa si hay una oportunidad fuerte</span></li>
         <li><b class="num">05:30</b><span>Yapper: informe al grupo y los 4 guiones del día</span></li>
         <li><b class="num">07:00</b><span>Latido del servidor en el grupo (sigue vivo, disco, pausa)</span></li>
         <li><b class="num">09:00</b><span>Radar: reel de la mañana publicado</span></li>
