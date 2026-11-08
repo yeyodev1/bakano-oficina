@@ -28,7 +28,8 @@ const r = computed(() => props.datos.agentes['radar-10k'])
 const y = computed(() => props.datos.agentes.yapper)
 const pr = computed(() => pantalla('radar-10k', r.value))
 const py = computed(() => pantalla('yapper', y.value))
-const hora = computed(() => new Date(props.ahora).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', hour12: false }))
+const hora = computed(() => new Date(props.ahora).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'America/Guayaquil' }))
+const fechaLarga = computed(() => new Date(props.ahora).toLocaleDateString('es-EC', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Guayaquil' }))
 const hoy = computed(() => props.datos.ahora.slice(0, 10))
 const pubHoy = computed(() => props.datos.publicados.filter(p => p.fecha === hoy.value).length)
 const guionesHoy = computed(() => props.datos.guiones.filter(g => g.nombre.startsWith(hoy.value)))
@@ -50,7 +51,7 @@ const globo = (a: Agente) => a.corriendo
   <div ref="caja" class="caja" :style="{ height: 560 * escala + 'px' }">
     <div class="oficina" :style="{ transform: `scale(${escala})` }" aria-hidden="true">
       <div class="ventana"><i class="luna" /></div>
-      <div class="reloj"><div class="px t">{{ hora }}</div><div class="d">hora de Ecuador</div></div>
+      <div class="reloj"><div class="px t">{{ hora }}</div><div class="d">{{ fechaLarga }} · hora de Ecuador · en vivo</div></div>
 
       <div class="tv">
         <div class="kpi"><b>{{ fmt(datos.metricas.ayer.views) }}</b><span>vistas ayer</span></div>
@@ -116,8 +117,8 @@ const globo = (a: Agente) => a.corriendo
 .planta { position: absolute; bottom: 8px; width: 46px; height: 120px; }
 .planta .m { position: absolute; bottom: 0; left: 8px; width: 30px; height: 28px; background: #b55a3c; border-radius: 4px 4px 8px 8px; }
 .planta .h { position: absolute; bottom: 22px; left: -2px; width: 50px; height: 90px; background: radial-gradient(circle at 30% 70%, #2fae5f 0 14px, transparent 15px), radial-gradient(circle at 70% 60%, #27944f 0 16px, transparent 17px), radial-gradient(circle at 50% 30%, #39c86f 0 16px, transparent 17px); }
-.reloj { position: absolute; left: 50%; top: 20px; transform: translateX(-50%); width: 260px; text-align: center; }
-.reloj .t { font-size: 30px; color: #fff; font-weight: 700; }
+.reloj { position: absolute; left: 50%; top: 20px; transform: translateX(-50%); width: 320px; text-align: center; }
+.reloj .t { font-size: 30px; color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; }
 .reloj .d { font-size: 11px; color: #a7a9c4; }
 .tv { position: absolute; left: 390px; top: 80px; width: 360px; height: 150px; background: #06070d; border: 8px solid #2a2d4a; border-radius: 10px; padding: 8px 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-items: center; }
 .tv::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 3px, rgba(255, 255, 255, .025) 3px 4px); pointer-events: none; }

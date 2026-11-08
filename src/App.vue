@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { secciones } from './router'
 import { TELEGRAM, useDatos } from './datos'
 
-const { datos, error, cargando, segundosDesdeCarga, ultimaCarga } = useDatos()
+const { datos, error, cargando, segundosDesdeCarga, ultimaCarga, ahora } = useDatos()
 const ruta = useRoute()
 const actual = computed(() => secciones.find(s => s.name === ruta.name) ?? secciones[0])
 const menu = ref(false)
@@ -12,7 +12,7 @@ const estado = computed(() => {
   if (cargando.value) return { clase: 'gris', texto: 'cargando…' }
   if (error.value) return { clase: 'rojo', texto: `sin conexión (${error.value})` }
   if (datos.value && !datos.value.bot) return { clase: 'rojo', texto: 'bot de Telegram caído' }
-  return { clase: 'verde', texto: `en vivo · hace ${segundosDesdeCarga.value ?? 0} s` }
+  return { clase: 'verde', texto: `${new Date(ahora.value).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'America/Guayaquil' })} Ecuador · en vivo · datos hace ${segundosDesdeCarga.value ?? 0} s` }
 })
 </script>
 
