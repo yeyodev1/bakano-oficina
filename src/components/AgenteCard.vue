@@ -53,7 +53,7 @@ const QUE_PASO: Record<string, string> = {
 
     <p class="fase">
       <template v-if="agente.corriendo">{{ agente.fase.charAt(0).toUpperCase() + agente.fase.slice(1) }}</template>
-      <template v-else-if="agente.vigila">Radar encendido: próxima ronda de tendencias en {{ minutosARonda }} min · reels a las {{ agente.proximas.join(' y ') }}</template>
+      <template v-else-if="agente.vigila">Radar encendido: próxima ronda en {{ minutosARonda }} min · publica cuando ve una oportunidad · mínimo a las {{ agente.proximas.join(' y ') }}</template>
       <template v-else>Próxima corrida a las {{ agente.proximas.join(' y ') }}</template>
       <small v-if="agente.corriendo">Paso {{ agente.paso + 1 }} de {{ n }} · lleva {{ agente.minutos }} min<template v-if="agente.detalle"> · proyecto «{{ agente.detalle.replace(/^\d{4}-\d\d-\d\d-/, '').replace(/-/g, ' ') }}»</template></small>
       <small v-else-if="agente.vigila">{{ agente.vigila.rondas_hoy }} rondas hoy · última {{ agente.vigila.ultima ? agente.vigila.ultima.slice(11, 16) : '—' }} · próximo reel en {{ falta(prox, ahora) }}</small>

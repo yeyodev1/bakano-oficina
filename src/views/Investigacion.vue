@@ -41,7 +41,7 @@ const bloquesDia = (md: string) => ([
       <div class="fila">
         <span class="pill" :class="'pos'"><i v-if="t.corriendo" class="punto" />{{ t.corriendo ? `Radar escaneando ahora · ${t.minutos} min` : 'Radar encendido · entre rondas' }}</span>
         <span class="meta">Rondas de hoy: <b class="num">{{ t.rondas_hoy }}</b> · última {{ t.ultima ? t.ultima.slice(5, 16).replace('T', ' ') : '—' }} · próxima {{ proximaRonda ? `en ${falta(proximaRonda, ahora)}` : '—' }}</span>
-        <Ayuda titulo="Investigación continua" texto="Radar 10K escanea cada hora, las 24 horas: qué se habla hoy en Ecuador, qué formatos y ganchos están pegando en reels, qué funciona en nuestra cuenta y el calendario comercial próximo. Convierte cada hallazgo en una idea lista para Ecuador y avisa al grupo si aparece una oportunidad fuerte." />
+        <Ayuda titulo="Investigación continua" texto="Radar 10K escanea cada hora, las 24 horas: qué se habla hoy en Ecuador, qué formatos y ganchos están pegando en reels, qué funciona en nuestra cuenta y el calendario comercial próximo. Convierte cada hallazgo en una idea lista para Ecuador, avisa al grupo con enlaces y, si la oportunidad es clara, produce y publica el reel en ese momento." />
       </div>
       <p class="meta">Una ronda cada hora (minuto 07). Cada ronda deja ideas listas para pegarla en Ecuador, una señal para los agentes y un mensaje al grupo con enlaces dirigido a quien le toca.</p>
     </section>

@@ -43,7 +43,7 @@ const agenda = computed(() => {
 const globo = (a: Agente) => a.corriendo
   ? { t: a.fase.charAt(0).toUpperCase() + a.fase.slice(1), s: `hace ${a.minutos} min${a.detalle ? ' · ' + a.detalle.replace(/^\d{4}-\d\d-\d\d-/, '').replace(/-/g, ' ') : ''}` }
   : a.vigila
-    ? { t: 'Radar encendido.', s: `Escaneo tendencias cada hora (${a.vigila.rondas_hoy} rondas hoy). Reels a las ${a.proximas.join(' y ')}.` }
+    ? { t: 'Radar encendido.', s: `Escaneo cada hora (${a.vigila.rondas_hoy} rondas hoy). Si veo una oportunidad, publico ya; mínimo a las ${a.proximas.join(' y ')}.` }
     : { t: 'Descansando.', s: `Vuelvo a las ${a.proximas.join(' y ')}.` }
 </script>
 

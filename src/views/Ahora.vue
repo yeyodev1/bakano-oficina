@@ -20,8 +20,8 @@ const agenda = computed(() => {
   const filas = [
     { h: '05:30', v: 5.5, t: 'Yapper investiga y escribe los 4 guiones', a: d.agentes.yapper },
     { h: '07:00', v: 7, t: 'Latido del servidor en el grupo', a: null },
-    { h: '09:00', v: 9, t: 'Radar produce y publica el reel de la mañana', a: d.agentes['radar-10k'] },
-    { h: '19:00', v: 19, t: 'Radar produce y publica el reel de la noche', a: d.agentes['radar-10k'] },
+    { h: '09:00', v: 9, t: 'Radar: reel de la mañana (mínimo garantizado)', a: d.agentes['radar-10k'] },
+    { h: '19:00', v: 19, t: 'Radar: reel de la noche (mínimo garantizado)', a: d.agentes['radar-10k'] },
   ]
   return filas.map(f => {
     const enCurso = !!f.a?.corriendo && Math.abs(f.v - hh) < 5

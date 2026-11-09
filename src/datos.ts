@@ -83,7 +83,7 @@ export function falta(d: Date, desde = Date.now()): string {
 export const fmt = (n: number | null | undefined) => n == null ? '—' : n.toLocaleString('es-EC')
 export const nombreAgente = (k: string) => k === 'radar-10k' ? 'Radar 10K' : k === 'yapper' ? 'Yapper' : k
 export const INFO = {
-  'radar-10k': { que: 'Siempre encendido: cada hora escanea tendencias de Ecuador, formatos que pegan y referentes, y guarda ideas listas. Produce y publica reels con IA a las 09:00 y a las 19:00.' },
+  'radar-10k': { que: 'Siempre encendido: cada hora escanea tendencias de Ecuador, formatos que pegan y referentes. Cuando ve una oportunidad clara, produce y publica el reel ahí mismo; además garantiza uno a las 09:00 y otro a las 19:00.' },
   yapper: { que: 'A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego y uno para Denisse) y publica el video grabado que haya en espera.' },
 } as const
 export const TELEGRAM = { grupo: 'https://t.me/+msK_Z1jzdrFjOTJh', bot: 'https://t.me/MakerVideosBakano_bot' }
