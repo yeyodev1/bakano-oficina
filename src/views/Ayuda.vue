@@ -8,7 +8,7 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
       <header><h2>Qué es esta oficina</h2></header>
       <p>Dos agentes de inteligencia artificial trabajan solos en un servidor para la cuenta <a :href="INSTAGRAM" target="_blank" rel="noopener">@bakano.ec</a>. Esta página muestra, en tiempo real, qué hace cada uno, qué publicó y qué toca grabar. Se actualiza sola cada 15 segundos.</p>
       <dl>
-        <dt>Radar 10K</dt><dd>Siempre encendido: cada hora escanea tendencias y referentes. Si ve una oportunidad clara (noticia de Ecuador que toca a un segmento, formato despegando, un reel nuestro que arranca fuerte) produce y publica el reel en ese momento. Garantiza como mínimo uno a las 09:00 y otro a las 19:00. Frenos: 2 horas entre reels, máximo 6 al día, nunca dos seguidos del mismo segmento.</dd>
+        <dt>Radar 10K</dt><dd>Siempre encendido: cada hora escanea tendencias y referentes. Si ve una oportunidad clara (noticia de Ecuador que toca a un segmento, formato despegando, un reel nuestro que arranca fuerte) produce y publica el reel en ese momento. Garantiza como mínimo uno a las 09:00 y otro a las 19:00 y no tiene tope de cantidad: él decide cuántos y cuándo, y avisa en el grupo cada decisión (incluso cuando decide no publicar).</dd>
         <dt>Yapper</dt><dd>A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego, uno para Denisse) y publica el video grabado que haya en espera.</dd>
         <dt>Meta</dt><dd>10.000 vistas diarias durante 10 días seguidos, con conversación real: comentarios, guardados, compartidos y mensajes.</dd>
       </dl>
