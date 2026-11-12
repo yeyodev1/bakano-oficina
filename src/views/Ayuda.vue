@@ -9,7 +9,10 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
       <p>Dos agentes de inteligencia artificial trabajan solos en un servidor para la cuenta <a :href="INSTAGRAM" target="_blank" rel="noopener">@bakano.ec</a>. Esta página muestra, en tiempo real, qué hace cada uno, qué publicó y qué toca grabar. Se actualiza sola cada 15 segundos.</p>
       <dl>
         <dt>Radar 10K</dt><dd>Siempre encendido: cada hora escanea tendencias y referentes. Si ve una oportunidad clara (noticia de Ecuador que toca a un segmento, formato despegando, un reel nuestro que arranca fuerte) produce y publica el reel en ese momento. Garantiza como mínimo uno a las 09:00 y otro a las 19:00 y no tiene tope de cantidad: él decide cuántos y cuándo, y avisa en el grupo cada decisión (incluso cuando decide no publicar).</dd>
-        <dt>Yapper</dt><dd>A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego, uno para Denisse) y publica el video grabado que haya en espera.</dd>
+        <dt>Yapper</dt><dd>A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego sobre automatizaciones, uno para Denisse sobre lógica de negocio, webs y tráfico) y publica el video grabado que haya en espera.</dd>
+        <dt>Codex</dt><dd>Produce los videos: dibuja, pone la voz, revisa y renderiza con el paquete Reels explicativos. Claude piensa y publica; Codex ejecuta.</dd>
+        <dt>Laboratorio</dt><dd>A las 13:00 y 17:00 hace 2 variantes de cada video publicado (gancho, caption, duración o segmento) y las sube como reels de prueba; al día siguiente mide cuál ganó.</dd>
+        <dt>Meta del día</dt><dd>Diego puede fijar un mínimo de reels para el día; Radar lo completa en sus rondas, con 60 minutos entre reels.</dd>
         <dt>Meta</dt><dd>10.000 vistas diarias durante 10 días seguidos, con conversación real: comentarios, guardados, compartidos y mensajes.</dd>
       </dl>
     </article>
@@ -20,6 +23,7 @@ import { INSTAGRAM, TELEGRAM } from '../datos'
         <li><b class="num">05:30</b><span>Yapper: informe al grupo y los 4 guiones del día</span></li>
         <li><b class="num">07:00</b><span>Latido del servidor en el grupo (sigue vivo, disco, pausa)</span></li>
         <li><b class="num">09:00</b><span>Radar: reel de la mañana publicado (mínimo garantizado)</span></li>
+        <li><b class="num">13:00 · 17:00</b><span>Laboratorio: variantes como reels de prueba</span></li>
         <li><b class="num">19:00</b><span>Radar: reel de la noche publicado (mínimo garantizado)</span></li>
         <li><b class="num">cuando toque</b><span>Radar: reel de oportunidad, en cuanto una ronda detecta algo que vale la pena</span></li>
         <li><b class="num">Lunes</b><span>Revisión del acceso a Instagram</span></li>

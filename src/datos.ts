@@ -15,7 +15,10 @@ export interface Datos {
   bot: boolean; vps: { disco: string; carga: string; ram: string }
   tendencias: { corriendo: boolean; minutos: number; ultima: string | null; rondas_hoy: number; vigentes: string; horas: string[] }
   metricas: { ayer: { views?: number; reach?: number }; reels: Reel[] }
-  racha: number; publicados: { agente: string; fecha: string; url: string }[]
+  racha: number; publicados: { agente: string; fecha: string; url: string; tipo?: 'reel' | 'prueba' }[]
+  meta_dia: number | null; publicados_hoy: number; pruebas_hoy: number
+  lab: { corriendo: boolean; ultima: string | null; horas: string[]; ultima_md: string }
+  codex: { produciendo: number; proyectos: string[] }
   guiones: Guion[]; investigaciones: Guion[]; listos: { nombre: string; mb: number; fecha: string }[]
   bitacoras: Bitacora[]; actividad: { hora: string; texto: string }[]
   horarios: { yapper: string; radar: string[]; latido: string }
@@ -84,7 +87,7 @@ export const fmt = (n: number | null | undefined) => n == null ? '—' : n.toLoc
 export const nombreAgente = (k: string) => k === 'radar-10k' ? 'Radar 10K' : k === 'yapper' ? 'Yapper' : k
 export const INFO = {
   'radar-10k': { que: 'Siempre encendido: cada hora escanea tendencias de Ecuador, formatos que pegan y referentes. Cuando ve una oportunidad clara, produce y publica el reel ahí mismo; además garantiza uno a las 09:00 y otro a las 19:00.' },
-  yapper: { que: 'A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego y uno para Denisse) y publica el video grabado que haya en espera.' },
+  yapper: { que: 'A las 05:30 investiga, escribe los cuatro guiones del día (dos para Radar, uno para Diego sobre automatizaciones y uno para Denisse sobre lógica de negocio, webs y tráfico) y publica el video grabado que haya en espera.' },
 } as const
 export const TELEGRAM = { grupo: 'https://t.me/+msK_Z1jzdrFjOTJh', bot: 'https://t.me/MakerVideosBakano_bot' }
 export const INSTAGRAM = 'https://www.instagram.com/bakano.ec/'

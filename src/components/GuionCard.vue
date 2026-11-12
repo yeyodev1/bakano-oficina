@@ -12,8 +12,10 @@ const c = computed(() => campos(props.guion.md))
 const quien = computed(() => {
   const n = props.guion.nombre
   if (/radar/.test(n)) return { etiqueta: /noche/.test(n) ? 'Reel con IA · noche 19:00' : /manana/.test(n) ? 'Reel con IA · mañana 09:00' : 'Reel con IA', graba: '' }
-  if (/diego/.test(n)) return { etiqueta: 'A cámara · Diego', graba: 'Diego' }
-  if (/denise|denisse/.test(n)) return { etiqueta: 'A cámara · Denisse', graba: 'Denisse' }
+  if (/diego/.test(n)) return { etiqueta: 'A cámara · Diego · automatizaciones', graba: 'Diego' }
+  if (/denise|denisse/.test(n)) return { etiqueta: 'A cámara · Denisse · lógica de negocio', graba: 'Denisse' }
+  if (/variante/.test(n)) return { etiqueta: 'Variante · reel de prueba', graba: '' }
+  if (/oportunidad/.test(n)) return { etiqueta: 'Reel con IA · oportunidad', graba: '' }
   if (/telegram/.test(n)) return { etiqueta: 'Pedido por Telegram', graba: '' }
   return { etiqueta: 'Guion', graba: '' }
 })

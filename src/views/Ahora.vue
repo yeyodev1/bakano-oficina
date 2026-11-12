@@ -21,8 +21,10 @@ const agenda = computed(() => {
     { h: '05:30', v: 5.5, t: 'Yapper investiga y escribe los 4 guiones', a: d.agentes.yapper },
     { h: '07:00', v: 7, t: 'Latido del servidor en el grupo', a: null },
     { h: '09:00', v: 9, t: 'Radar: reel de la mañana (mínimo garantizado)', a: d.agentes['radar-10k'] },
+    { h: '13:00', v: 13, t: 'Laboratorio: variantes como reels de prueba', a: null },
+    { h: '17:00', v: 17, t: 'Laboratorio: segunda tanda', a: null },
     { h: '19:00', v: 19, t: 'Radar: reel de la noche (mínimo garantizado)', a: d.agentes['radar-10k'] },
-  ]
+  ].sort((x, y) => x.v - y.v)
   return filas.map(f => {
     const enCurso = !!f.a?.corriendo && Math.abs(f.v - hh) < 5
     return { ...f, estado: enCurso ? 'en curso' : f.v < hh ? 'hecho' : 'en ' + falta(proxima([f.h], n), ahora.value), clase: enCurso ? 'ahora' : f.v < hh ? 'hecho' : '' }
@@ -44,6 +46,21 @@ const agenda = computed(() => {
     <section class="grid par" aria-label="Agentes">
       <AgenteCard class="c6" clave="radar-10k" :agente="datos.agentes['radar-10k']" :ahora="ahora" />
       <AgenteCard class="c6" clave="yapper" :agente="datos.agentes.yapper" :ahora="ahora" />
+    </section>
+
+    <section class="grid par">
+      <article class="panel c6">
+        <header><h2>Meta de reels de hoy <Ayuda titulo="Meta del día" texto="Cantidad mínima de reels normales que deben salir hoy en @bakano.ec (la fija Diego). Radar la completa en sus rondas horarias, con al menos 60 minutos entre reels. Los reels de prueba no cuentan aquí." /></h2><span class="meta">{{ datos.meta_dia ? 'fijada por Diego' : 'sin meta fijada' }}</span></header>
+        <p class="metan num"><b>{{ datos.publicados_hoy }}</b><span v-if="datos.meta_dia"> de {{ datos.meta_dia }}</span><span v-else> publicados</span></p>
+        <div v-if="datos.meta_dia" class="track"><i :style="{ width: Math.min(100, datos.publicados_hoy / datos.meta_dia * 100) + '%' }" /></div>
+        <p class="meta" style="margin-top:8px">Reels de prueba subidos hoy por el laboratorio: <b class="num">{{ datos.pruebas_hoy }}</b></p>
+      </article>
+      <article class="panel c6">
+        <header><h2>Producción y laboratorio <Ayuda titulo="Producción y laboratorio" texto="Codex es quien dibuja y renderiza los videos (Claude piensa, escribe y publica). El laboratorio corre a las 13:00 y 17:00: hace 2 variantes de cada video publicado y las sube como reels de prueba, luego mide cuál ganó." /></h2><span class="meta">Codex · 13:00 y 17:00</span></header>
+        <p><span class="pill" :class="datos.codex.produciendo ? 'pos' : ''"><i v-if="datos.codex.produciendo" class="punto" />{{ datos.codex.produciendo ? `Codex produciendo ${datos.codex.produciendo} video${datos.codex.produciendo > 1 ? 's' : ''}` : 'Codex en reposo' }}</span></p>
+        <ul class="filas" v-if="datos.codex.proyectos.length" style="margin-top:6px"><li v-for="p in datos.codex.proyectos" :key="p"><span class="n">{{ p.replace(/-/g, ' ') }}</span></li></ul>
+        <p style="margin-top:10px"><span class="pill" :class="datos.lab.corriendo ? 'pos' : ''"><i v-if="datos.lab.corriendo" class="punto" />{{ datos.lab.corriendo ? 'Laboratorio corriendo' : 'Laboratorio en reposo' }}</span> <span class="meta">última {{ datos.lab.ultima ? datos.lab.ultima.slice(5, 16).replace('T', ' ') : '—' }}</span></p>
+      </article>
     </section>
 
     <section class="grid">
@@ -90,6 +107,10 @@ const agenda = computed(() => {
 </template>
 
 <style scoped>
+.metan { font-size: 30px; line-height: 1.1; }
+.metan span { font-size: 14px; color: var(--muted); }
+.track { height: 8px; background: var(--raised); border-radius: 4px; overflow: hidden; margin-top: 10px; }
+.track i { display: block; height: 100%; background: var(--hue); border-radius: 4px; transition: width .6s; }
 .hallazgo { font-size: 16px; line-height: 24px; margin-bottom: var(--gap); }
 .pie-escena { margin: 6px 0 var(--gap); text-align: center; }
 .agenda li { display: flex; gap: 10px; align-items: center; min-height: 40px; padding: 6px 0; border-top: 1px solid var(--rule); }

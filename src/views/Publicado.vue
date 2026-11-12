@@ -8,11 +8,11 @@ const { datos } = useDatos()
 <template>
   <section v-if="datos" class="grid par">
     <article class="panel c6">
-      <header><h2>Publicado por los agentes <Ayuda titulo="Publicado" texto="Cada reel que un agente subió a @bakano.ec, con la fecha y el enlace. Las métricas de cada uno están en «Métricas» y en su bitácora." /></h2><span class="meta">{{ datos.publicados.length }} en total</span></header>
+      <header><h2>Publicado por los agentes <Ayuda titulo="Publicado" texto="Cada reel que un agente subió a @bakano.ec, con la fecha y el enlace. Los marcados «prueba» son reels de prueba del laboratorio: solo los ven no seguidores y Instagram los gradúa si rinden." /></h2><span class="meta">{{ datos.publicados.length }} en total</span></header>
       <ul class="filas">
         <li v-for="p in datos.publicados" :key="p.url + p.fecha">
           <span><span class="n">{{ nombreAgente(p.agente) }}</span><span class="m"> · {{ p.fecha }}</span><br><a :href="p.url" target="_blank" rel="noopener">{{ p.url.replace('https://www.instagram.com/', '') }}</a></span>
-          <span class="d"><a class="btn chico" :href="p.url" target="_blank" rel="noopener">Ver reel</a></span>
+          <span class="d"><span v-if="p.tipo === 'prueba'" class="pill warn" style="margin-right:6px">prueba</span><a class="btn chico" :href="p.url" target="_blank" rel="noopener">Ver reel</a></span>
         </li>
         <li v-if="!datos.publicados.length" class="vacio">Nada publicado por los agentes todavía.</li>
       </ul>
